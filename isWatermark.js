@@ -248,26 +248,7 @@ function TpWatermark(
           let oText = document.createTextNode(defaultSettings.watermark_txt);
           console.log("oText>>", oText);
           // mask_div.appendChild(oText);
-          const now = new Date();
-          const year = now.getFullYear();
-          const month = now.getMonth() + 1;
-          const day = now.getDate();
-          const hours = now.getHours();
-          const minutes = now.getMinutes();
-          const seconds = now.getSeconds();
-          const timeInfo =
-            year +
-            "年" +
-            month +
-            "月" +
-            day +
-            "日" +
-            hours +
-            "：" +
-            minutes +
-            "：" +
-            seconds;
-          mask_div.innerHTML += `<div style="display:flex;flex-direction:column;align-items:flex-start;"><div>${text}</div><div>${Uid}</div><div>${Ip}</div><div>${Mac}</div><div>${Machine}</div><div>${Account}</div><div>${timeInfo}</div></div>`;
+          mask_div.innerHTML += `<div style="display:flex;flex-direction:column;align-items:flex-start;"><div>${text}</div><div>${Uid}</div><div>${Ip}</div><div>${Mac}</div><div>${Machine}</div><div>${Account}</div><div>${Time}</div></div>`;
           // 设置水印相关属性start
           mask_div.id = defaultSettings.watermark_prefix + i + j;
           // 设置水印div倾斜显示
@@ -311,25 +292,6 @@ function TpWatermark(
     return;
   }
   var TpLine = parseInt(document.body.clientWidth / W) * 2; // 一行显示几列
-  const now = new Date();
-  const year = now.getFullYear();
-  const month = now.getMonth() + 1;
-  const day = now.getDate();
-  const hours = now.getHours();
-  const minutes = now.getMinutes();
-  const seconds = now.getSeconds();
-  const timeInfo =
-    year +
-    "年" +
-    month +
-    "月" +
-    day +
-    "日" +
-    hours +
-    "：" +
-    minutes +
-    "：" +
-    seconds;
   var StrLine = "";
   // for (var i = 0; i < TpLine; i++) {
   StrLine +=
@@ -356,7 +318,7 @@ function TpWatermark(
     "</div><div>" +
     Account +
     "</div><div>" +
-    timeInfo +
+    Time +
     "</div></div>";
   // }
   var DivLine = document.createElement("div");

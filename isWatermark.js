@@ -8,21 +8,21 @@ function RemoveTpWatermark() {
 }
 
 function TpWatermark(
-  text,
-  Uid,
-  Ip,
-  Mac,
-  Machine,
-  Account,
-  Time,
-  H,
-  W,
-  fontFamily,
-  fontSize,
-  FontMode,
-  color,
-  fontGradient,
-  FontTransparency
+  text = "文件机密",
+  Uid = "SGW4ZB9U",
+  Ip = "192.168.1.101",
+  Mac = "00-0c-29-2e-e7-0f",
+  Machine = "WIN1064_123",
+  Account = "NSecsoftP",
+  Time = "2023-5-26 13:02:47",
+  H = "60",
+  W = "60",
+  fontFamily = "Microsoft YaHei",
+  fontSize = "22",
+  FontMode = 2,
+  color = "green",
+  fontGradient = "",
+  FontTransparency = "15"
 ) {
   // 判断水印是否存在，如果存在，那么不执行
   // if (document.getElementById("tp-watermark") != null) {
@@ -43,8 +43,8 @@ function TpWatermark(
       watermark_font: fontFamily, // 水印字体
       watermark_color: color, // 水印字体颜色
       watermark_fontsize: fontSize, // 水印字体大小
-      watermark_alpha: FontTransparency, // 水印透明度，要求设置在大于等于0.005
-      watermark_width: 260, // 水印宽度
+      watermark_alpha: FontTransparency / 100, // 水印透明度，要求设置在大于等于0.005
+      watermark_width: 290, // 水印宽度
       watermark_height: 220, // 水印长度
       watermark_angle: -fontGradient, // 水印倾斜度数
       watermark_parent_width: 0, // 水印的总体宽度（默认值：body的scrollWidth和clientWidth的较大值）
@@ -246,9 +246,28 @@ function TpWatermark(
 
           let mask_div = document.createElement("div");
           let oText = document.createTextNode(defaultSettings.watermark_txt);
-          console.log("oText>>", oText);
-          // mask_div.appendChild(oText);
-          mask_div.innerHTML += `<div style="display:flex;flex-direction:column;align-items:flex-start;"><div>${text}</div><div>${Uid}</div><div>${Ip}</div><div>${Mac}</div><div>${Machine}</div><div>${Account}</div><div>${Time}</div></div>`;
+          // console.log("oText>>", oText);
+          mask_div.appendChild(oText);
+          const now = new Date();
+          const year = now.getFullYear();
+          const month = now.getMonth() + 1;
+          const day = now.getDate();
+          const hours = now.getHours();
+          const minutes = now.getMinutes();
+          const seconds = now.getSeconds();
+          const timeInfo =
+            year +
+            "年" +
+            month +
+            "月" +
+            day +
+            "日" +
+            hours +
+            "：" +
+            minutes +
+            "：" +
+            seconds;
+          mask_div.innerHTML += `<div style="display:flex;flex-direction:column;align-items:flex-start;color:${defaultSettings.watermark_color};opacity:${defaultSettings.watermark_alpha};font-size:${defaultSettings.watermark_fontsize}px;font-family:${defaultSettings.watermark_font};">${text}<br />${Uid}<br/>${Ip}<br/>${Mac}<br/>${Machine}<br/>${Account}<br/>${timeInfo}<br/></div>`;
           // 设置水印相关属性start
           mask_div.id = defaultSettings.watermark_prefix + i + j;
           // 设置水印div倾斜显示
@@ -269,14 +288,14 @@ function TpWatermark(
           mask_div.style.top = y + "px";
           mask_div.style.overflow = "hidden";
           mask_div.style.zIndex = "9999";
-          mask_div.style.display = "flex";
-          mask_div.style.flexDirection = "column";
-          mask_div.style.alignItems = "flex-start";
+          // mask_div.style.display = "flex";
+          // mask_div.style.flexDirection = "column";
+          // mask_div.style.alignItems = "flex-start";
           // mask_div.style.border="solid #eee 1px";
-          mask_div.style.opacity = defaultSettings.watermark_alpha;
-          mask_div.style.fontSize = defaultSettings.watermark_fontsize + "px";
-          mask_div.style.fontFamily = defaultSettings.watermark_font;
-          mask_div.style.color = defaultSettings.watermark_color;
+          // mask_div.style.opacity = defaultSettings.watermark_alpha;
+          // mask_div.style.fontSize = defaultSettings.watermark_fontsize + "px";
+          // mask_div.style.fontFamily = defaultSettings.watermark_font;
+          // mask_div.style.color = defaultSettings.watermark_color;
           // mask_div.style.textAlign = 'center';
           mask_div.style.width = defaultSettings.watermark_width + "px";
           mask_div.style.height = defaultSettings.watermark_height + "px";
@@ -292,6 +311,25 @@ function TpWatermark(
     return;
   }
   var TpLine = parseInt(document.body.clientWidth / W) * 2; // 一行显示几列
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = now.getMonth() + 1;
+  const day = now.getDate();
+  const hours = now.getHours();
+  const minutes = now.getMinutes();
+  const seconds = now.getSeconds();
+  const timeInfo =
+    year +
+    "年" +
+    month +
+    "月" +
+    day +
+    "日" +
+    hours +
+    "：" +
+    minutes +
+    "：" +
+    seconds;
   var StrLine = "";
   // for (var i = 0; i < TpLine; i++) {
   StrLine +=
@@ -305,21 +343,21 @@ function TpWatermark(
     fontGradient +
     "deg);opacity:" +
     FontTransparency +
-    ';"><div>' +
+    ';">' +
     text +
-    "</div><div>" +
+    "<br />" +
     Uid +
-    "</div><div>" +
+    "<br />" +
     Ip +
-    "</div><div>" +
+    "<br />" +
     Mac +
-    "</div><div>" +
+    "<br />" +
     Machine +
-    "</div><div>" +
+    "<br />" +
     Account +
-    "</div><div>" +
-    Time +
-    "</div></div>";
+    "<br />" +
+    timeInfo +
+    "<br />";
   // }
   var DivLine = document.createElement("div");
   DivLine.innerHTML = StrLine;
@@ -336,11 +374,8 @@ function TpWatermark(
   DivLayer.style.zIndex = "99999"; // 水印页面层级
   DivLayer.style.pointerEvents = "none";
   DivLayer.style.marginRight = "20px";
-  // DivLayer.style.display = "flex";
-  // DivLayer.style.flexDirection = "column";
-  // DivLayer.style.alignItems = "flex-start";
+
   if (FontMode == 0) {
-    console.log("00000000");
   } else if (FontMode == 1) {
     // fontMode == 1  居中状态
     DivLayer.style.position = "absolute";
@@ -359,3 +394,7 @@ function TpWatermark(
 
   document.body.appendChild(DivLayer); // 到页面中
 }
+TpWatermark();
+// setInterval(() => {
+//   TpWatermark();
+// }, 1000);

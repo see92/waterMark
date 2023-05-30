@@ -12,54 +12,55 @@
   </body>
 </html>
 <script src="./isWatermark.js"></script>
+<!-- <script src="http://192.168.1.146:8897/custom/isWatermark.js"></script> -->
 <script>
-  const [
-    text,
-    Uid,
-    Ip,
-    Mac,
-    Machine,
-    Account,
-    Time,
-    FamilyName,
-    FontSize,
-    FontMode,
-    FontColor,
-    fontGradient,
-    FontTransparency,
-  ] = [
-    "文字机密",
-    "SGW4ZB9U",
-    "192.168.1.101",
-    "00-0c-29-2e-e7-0f",
-    "WIN1064_123",
-    "NSecsoftP",
-    "2023-5-26 13:02:47",
-    "Microsoft YaHei",
-    "20",
-    0,
-    "#000",
-    "",
-    "64",
-  ];
+  // const [
+  //   text,
+  //   Uid,
+  //   Ip,
+  //   Mac,
+  //   Machine,
+  //   Account,
+  //   Time,
+  //   FamilyName,
+  //   FontSize,
+  //   FontMode,
+  //   FontColor,
+  //   fontGradient,
+  //   FontTransparency,
+  // ] = [
+  //   "文字机密",
+  //   "SGW4ZB9U",
+  //   "192.168.1.101",
+  //   "00-0c-29-2e-e7-0f",
+  //   "WIN1064_123",
+  //   "NSecsoftP",
+  //   "2023-5-26 13:02:47",
+  //   "Microsoft YaHei",
+  //   "22",
+  //   1,
+  //   "green",
+  //   "",
+  //   "15",
+  // ];
 
-  setInterval(() => {
-    TpWatermark(
-      text, //文字内容
-      Uid,
-      Ip,
-      Mac,
-      Machine,
-      Account,
-      Time,
-      "50", //行高
-      "330", //宽度
-      FamilyName, //字体类型
-      FontSize, //字体大小
-      FontMode,
-      FontColor, //颜色
-      -fontGradient, //倾斜度
-      FontTransparency / 100 //透明度
-    );
-  }, 1000);
+  // setInterval(() => {
+  //   TpWatermark(
+  //     text, //文字内容
+  //     Uid,
+  //     Ip,
+  //     Mac,
+  //     Machine,
+  //     Account,
+  //     Time,
+  //     "50", //行高
+  //     "330", //宽度
+  //     FamilyName, //字体类型
+  //     FontSize, //字体大小
+  //     FontMode,
+  //     FontColor, //颜色
+  //     -fontGradient, //倾斜度
+  //     FontTransparency / 100 //透明度
+  //   );
+  // }, 1000);
 </script>
